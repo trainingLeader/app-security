@@ -8,6 +8,7 @@ import com.appsecurity.app_security.persistence.entity.Category;
 
 import java.util.Optional;
 
+
 public interface CategoryService {
     Page<Category> findAll(Pageable pageable);
 
