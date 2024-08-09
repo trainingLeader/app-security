@@ -18,7 +18,7 @@ public class HttpSecurityConfig {
     private AuthenticationProvider daoAuthProvider;
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
         SecurityFilterChain filterChain = http
                 .csrf( csrfConfig -> csrfConfig.disable() )
@@ -29,6 +29,7 @@ public class HttpSecurityConfig {
                     authReqConfig.requestMatchers(HttpMethod.POST, "/customers").permitAll();
                     authReqConfig.requestMatchers(HttpMethod.POST, "/auth/authenticate").permitAll();
                     authReqConfig.requestMatchers(HttpMethod.GET, "/auth/validate-token").permitAll();
+                    authReqConfig.requestMatchers(HttpMethod.GET, "/products").permitAll();
 
                     authReqConfig.anyRequest().authenticated();
                 } )
