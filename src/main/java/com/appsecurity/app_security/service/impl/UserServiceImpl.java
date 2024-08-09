@@ -24,7 +24,6 @@ public class UserServiceImpl implements UserService{
     @Override
     public User registrOneCustomer(SaveUser newUser) {
         validatePassword(newUser);
-
         User user = new User();
         user.setPassword(passwordEncoder.encode(newUser.getPassword()));
         user.setUsername(newUser.getUsername());

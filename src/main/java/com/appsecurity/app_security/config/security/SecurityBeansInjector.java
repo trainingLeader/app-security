@@ -17,16 +17,17 @@ import com.appsecurity.app_security.persistence.repository.UserRepository;
 @Configuration
 public class SecurityBeansInjector {
 
+    
     @Autowired
     private UserRepository userRepository;
 
     @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
+    AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
         return authenticationConfiguration.getAuthenticationManager();
     }
 
     @Bean
-    public AuthenticationProvider authenticationProvider(){
+    AuthenticationProvider authenticationProvider(){
         DaoAuthenticationProvider authenticationStrategy = new DaoAuthenticationProvider();
         authenticationStrategy.setPasswordEncoder( passwordEncoder() );
         authenticationStrategy.setUserDetailsService( userDetailsService() );
@@ -35,15 +36,15 @@ public class SecurityBeansInjector {
     }
 
     @Bean
-    public PasswordEncoder passwordEncoder(){
+    PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
     }
 
     @Bean
-    public UserDetailsService userDetailsService(){
+    UserDetailsService userDetailsService(){
         return (username) -> {
             return userRepository.findByUsername(username)
-                    .orElseThrow(() -> new ObjectNotFoundException("User not found with username " + username));
+                    .orElseThrow(() -> new ObjectNotFoundException("Usuario no encontrado con  username " + username));
         };
     }
 }
