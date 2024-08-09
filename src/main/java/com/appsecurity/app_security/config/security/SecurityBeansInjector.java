@@ -46,6 +46,4 @@ public class SecurityBeansInjector {
                     .orElseThrow(() -> new ObjectNotFoundException("User not found with username " + username));
         };
     }
-
-
 }

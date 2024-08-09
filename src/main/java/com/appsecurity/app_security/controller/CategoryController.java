@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import com.appsecurity.app_security.dto.SaveCategory;
 import com.appsecurity.app_security.persistence.entity.Category;
+import com.appsecurity.app_security.persistence.util.RateLimited;
 import com.appsecurity.app_security.service.CategoryService;
 
 import java.util.Optional;
@@ -21,6 +22,7 @@ public class CategoryController {
     @Autowired
     private CategoryService categoryService;
 
+    @RateLimited
     @GetMapping
     public ResponseEntity<Page<Category>> findAll(Pageable pageable){
 

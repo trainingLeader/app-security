@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import com.appsecurity.app_security.dto.SaveProduct;
 import com.appsecurity.app_security.persistence.entity.Product;
+import com.appsecurity.app_security.persistence.util.RateLimited;
 import com.appsecurity.app_security.service.ProductService;
 
 import java.util.Optional;
